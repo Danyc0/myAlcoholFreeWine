@@ -29,7 +29,8 @@ class MyHandler(BaseHTTPRequestHandler):
         self.end_headers()
         if self.path.startswith("/wines"):
             if self.path.endswith("/wines") or self.path.endswith("/wines/"):
-                self.wfile.write('This is a list of wines')
+                for wine in self.wines:
+                    self.wfile.write(wine['name'])
             else:
                 wineID = self.path[7:]
                 self.wfile.write("You picked wine number: " + wineID)
