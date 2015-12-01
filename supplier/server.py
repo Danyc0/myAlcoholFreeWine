@@ -21,7 +21,7 @@ class MyHandler(BaseHTTPRequestHandler):
             print("User Agent: " + self.headers.get('User-Agent'))
         response_code = 200
         self.send_response(response_code)
-        self.send_header("Content-type", "text/html"            self.send_header("X-Clacks-Overhead", "GNU Terry Pratchett")
+        self.send_header("Content-type", "text/html")
         self.send_header("X-Clacks-Overhead", "GNU Terry Pratchett")
         self.end_headers()
         self.wfile.write('Welcome to my really really really REALLY basic website')
