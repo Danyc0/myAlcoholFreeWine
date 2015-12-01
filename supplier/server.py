@@ -9,6 +9,9 @@ import difflib
 
 
 class MyHandler(BaseHTTPRequestHandler):
+    wines = [
+            {'name' : "Wine1", 'image' : "wine1.jpg", 'shortdescription' : "blabla", 'longdescription' : "blablabla", 'origin' : "France", 'type' : "Sauvignon blanc", 'vegi' : True, 'size' : 1500, 'price' : 3.99},
+            ]
     def do_GET(self):
         #response_code = 404
         current_time = ctime()
@@ -24,7 +27,13 @@ class MyHandler(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.send_header("X-Clacks-Overhead", "GNU Terry Pratchett")
         self.end_headers()
-        self.wfile.write('Welcome to my really really really REALLY basic website')
+        if self.path.startswith("/wines"):
+            if self.path.endswith("/wines") or self.path.endswith("/wines/"):
+                self.wfile.write('This is a list of wines')
+            else:
+                wineID = self.path[7:]
+                self.wfile.write("You picked wine number: " + wineID)
+                self.wfile.write("That wine is called: " + self.wines[int(wineID)]['name'])
 
         print (response_code)
         print
