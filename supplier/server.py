@@ -32,9 +32,14 @@ class MyHandler(BaseHTTPRequestHandler):
                 for wine in self.wines:
                     self.wfile.write(wine['name'])
             else:
-                wineID = self.path[7:]
-                self.wfile.write("You picked wine number: " + wineID)
-                self.wfile.write("That wine is called: " + self.wines[int(wineID)]['name'])
+                wineID = int(self.path.rsplit("/")[2])
+                if self.path.endswith(str(wineID)) or self.path.endswith(str(wineID) + "/"):
+                    self.wfile.write("You picked wine number: " + str(wineID))
+                    self.wfile.write("That wine is called: " + self.wines[wineID]['name'])
+                else:
+                    key = self.path.rsplit('/')[3]
+                    self.wfile.write("Here is your " + key + ": ")
+                    self.wfile.write(self.wines[wineID][key])
 
         print (response_code)
         print
