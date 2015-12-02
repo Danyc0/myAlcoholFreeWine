@@ -6,14 +6,11 @@ from BaseHTTPServer import BaseHTTPRequestHandler
 from time import ctime
 import urllib2
 import difflib
+import json
 
 
 class MyHandler(BaseHTTPRequestHandler):
-    wines = [
-            {'name' : "Wine1", 'image' : "wine1.jpg", 'shortdescription' : "blabla", 'longdescription' : "blablabla", 'origin' : "France", 'type' : "Sauvignon blanc", 'vegi' : True, 'size' : 1500, 'price' : 3.99},
-            ]
     def do_GET(self):
-        #response_code = 404
         current_time = ctime()
         print("Received GET request at " + current_time)
         print("IP:  " + self.client_address[0])
@@ -22,25 +19,43 @@ class MyHandler(BaseHTTPRequestHandler):
         print("Host: " + host)
         if self.headers.get('User-Agent'):
             print("User Agent: " + self.headers.get('User-Agent'))
-        response_code = 200
+        response_code = 404
+        wines = []
+        with open("supplier1.json") as supplier:
+            wines = json.load(supplier)
+        output = ""
+        
+        path = filter(None, self.path.rsplit("/"))
+        print(path)
+        if self.path.startswith("/wines"):
+            if len(path) == 1:
+                if wines:
+                    response_code = 200
+                    output += json.JSONEncoder().encode(wines)
+            else:
+                field = path[1]
+                try:
+                    wineID = int(field)
+                    if len(path) == 2:
+                        if wineID < len(wines):
+                            response_code = 200
+                            output += json.JSONEncoder().encode(wines[wineID])
+                    else:
+                        key = path[2]
+                        if key in wines[wineID]:
+                            response_code = 200
+                            output += json.JSONEncoder().encode(wines[wineID][key])
+                except:
+                    if length(path) == 2:
+                        
+                    else:
+                        output += json.JSONEncoder().encode((item for item in wines if item[field] == "Pam").next())
         self.send_response(response_code)
         self.send_header("Content-type", "text/html")
         self.send_header("X-Clacks-Overhead", "GNU Terry Pratchett")
         self.end_headers()
-        if self.path.startswith("/wines"):
-            if self.path.endswith("/wines") or self.path.endswith("/wines/"):
-                for wine in self.wines:
-                    self.wfile.write(wine['name'])
-            else:
-                wineID = int(self.path.rsplit("/")[2])
-                if self.path.endswith(str(wineID)) or self.path.endswith(str(wineID) + "/"):
-                    self.wfile.write("You picked wine number: " + str(wineID))
-                    self.wfile.write("That wine is called: " + self.wines[wineID]['name'])
-                else:
-                    key = self.path.rsplit('/')[3]
-                    self.wfile.write("Here is your " + key + ": ")
-                    self.wfile.write(self.wines[wineID][key])
-
+        if output:
+            self.wfile.write(output)
         print (response_code)
         print
         return

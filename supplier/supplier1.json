@@ -1,0 +1,15 @@
+[
+    {
+        "name" : "wine1",
+        "image" : "wine1.jpg",
+        "description" : {
+            "short" : "my wine one",
+            "long" : "my long wine one"
+        },
+        "origin" : "france",
+        "grape" : "sauvignon blanc",
+        "vegitarian" : true,
+        "size" : 500,
+        "price" : 6.99
+    }
+]
