@@ -27,29 +27,24 @@ class MyHandler(BaseHTTPRequestHandler):
         
         path = filter(None, self.path.rsplit("/"))
         print(path)
-        if self.path.startswith("/wines"):
+
+        if wines:
             if len(path) == 1:
-                if wines:
-                    response_code = 200
-                    output += json.JSONEncoder().encode(wines)
+                response_code = 200
+                output = json.JSONEncoder().encode(wines)
             else:
-                field = path[1]
-                try:
-                    wineID = int(field)
+                wineID = int(path[1])
+                if wineID < len(wines):
                     if len(path) == 2:
-                        if wineID < len(wines):
-                            response_code = 200
-                            output += json.JSONEncoder().encode(wines[wineID])
+                        response_code = 200
+                        output = json.JSONEncoder().encode(wines[wineID])
                     else:
                         key = path[2]
                         if key in wines[wineID]:
-                            response_code = 200
-                            output += json.JSONEncoder().encode(wines[wineID][key])
-                except:
-                    if length(path) == 2:
-                        
-                    else:
-                        output += json.JSONEncoder().encode((item for item in wines if item[field] == "Pam").next())
+                            if len(path) == 3:
+                                response_code = 200
+                                output = json.JSONEncoder().encode(wines[wineID][key])
+
         self.send_response(response_code)
         self.send_header("Content-type", "text/html")
         self.send_header("X-Clacks-Overhead", "GNU Terry Pratchett")
@@ -91,6 +86,7 @@ server_address = ('', port)
 
 MyHandler.protocol_version = "HTTP/1.0"
 httpd = ServerClass(server_address, MyHandler)
+
 
 sa = httpd.socket.getsockname()
 print "Serving HTTP on", sa[0], "port", sa[1], "..."
