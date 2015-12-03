@@ -7,6 +7,7 @@ from time import ctime
 import urllib2
 import difflib
 import json
+import ssl
 
 
 class MyHandler(BaseHTTPRequestHandler):
@@ -87,6 +88,7 @@ server_address = ('', port)
 MyHandler.protocol_version = "HTTP/1.0"
 httpd = ServerClass(server_address, MyHandler)
 
+#httpd.socket = ssl.wrap_socket(httpd.socket, certfile='path/to/certfile.pem', server_side=True)
 
 sa = httpd.socket.getsockname()
 print "Serving HTTP on", sa[0], "port", sa[1], "..."
