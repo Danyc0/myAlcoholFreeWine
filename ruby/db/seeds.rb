@@ -8,6 +8,7 @@
 
 5.times do |i|
     Wine.create(
+        id: i,
         name: "awine ##{i}",
         image: "wine1.jpg",
         short_description: "my wine one",
@@ -22,6 +23,7 @@ end
 
 30.times do |i|
     Wine.create(
+        id: (i+5),
         name: "wine ##{i}",
         image: "wine1.jpg",
         short_description: "my wine one",
@@ -36,6 +38,7 @@ end
 
 5.times do |i|
     Wine.create(
+        id: (i+45),
         name: "zwine ##{i}",
         image: "wine1.jpg",
         short_description: "my wine one",
