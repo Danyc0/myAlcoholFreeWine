@@ -1,8 +1,10 @@
 class WinesController < ApplicationController
     require 'rest-client'
 
+    before_action :set_current_page
+
     def index
-        @wines = Wine.all
+        @wines = Wine.paginate(page: params[:page], per_page: params[:per_page]).order('name')
     end
 
     def create
@@ -27,4 +29,9 @@ class WinesController < ApplicationController
     def show
         @wine = Wine.find(params[:id])
     end
+
+    private
+        def set_current_page
+            @current_page = params[:page] || 1
+        end
 end
