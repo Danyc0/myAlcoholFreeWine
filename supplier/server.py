@@ -11,6 +11,7 @@ import ssl
 
 
 class MyHandler(BaseHTTPRequestHandler):
+    current_order_ID = 0
     def do_GET(self):
         current_time = ctime()
         print("Received GET request at " + current_time)
@@ -57,18 +58,56 @@ class MyHandler(BaseHTTPRequestHandler):
         return
 
     def do_POST(self):
+        global current_order_ID
         current_time = ctime()
         content_len = int(self.headers.getheader('content-length'))
-        print("Received POST request at " + current_time + "\nwith this data: " + self.rfile.read(content_len))
+        JSONdata = self.rfile.read(content_len)
+        print("Received POST request at " + current_time + "\nwith this data: " + JSONdata)
+        
         print(self.headers)
-        response_code = 200
-        print response_code
-        print
+       
+        response_code = 404
+
+        wines = []
+        with open("supplier1.json") as supplier:
+            wines = json.load(supplier)
+        output = ""
+
+        path = filter(None, self.path.rsplit("/"))
+        order = json.JSONDecoder().decode(JSONdata)
+        current_order_ID += 1
+
+        order_confirmation = {'orderID' : -1, 'wines' : [], 'not_ordered' : []}
+        
+        for wine in order['wines']:
+            if wine['id'] < len(wines):
+                if wines[wine['id']]['stock'] >= wine['amount']:
+                    wines[wine['id']]['stock'] -= wine['amount']
+                
+                    order_confirmation['wines'].append(wine)
+                else:
+                    order_confirmation['not_ordered'].append(wine)
+            else:
+                order_confirmation['not_ordered'].append(wine)
+
+
+            order_confirmation['orderID'] = currentID
+        
+        if order_confirmation['orderID'] != -1:
+            output = json.JSONEncoder().encode(order_confirmation)
+            response_code = 200
+        
         self.send_response(response_code)
         self.send_header("Content-type", "text/html")
         self.send_header("X-Clacks-Overhead", "GNU Terry Pratchett")
         self.end_headers()
-        self.wfile.write('Welcome to the most POSTy website of them all')
+
+        if output:
+            self.wfile.write(output)
+
+        print response_code
+        print
+
 
     def log_request(self, code=None, size=None):
         print('Request')
