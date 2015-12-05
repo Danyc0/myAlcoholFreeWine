@@ -1,0 +1,14 @@
+<h1>Listing Wines</h1>
+ 
+<table>
+   <tr>
+       <th>Name</th>
+       <th>Price</th>
+   </tr>
+   <% @wines.each do |wine| %>
+      <tr>
+           <td><%= wine.name %></td>
+           <td><%= wine.price %></td>
+      </tr>
+  <% end %>
+</table>
