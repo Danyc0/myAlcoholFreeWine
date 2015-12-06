@@ -4,6 +4,45 @@
 </p>
 
 <p>
-    <strong>Wine Image:</strong>
     <img src="<%= @wine.image %>"
+</p>
+
+<p>
+    <%= @wine.long_description %>
+</p>
+
+<p>
+    <strong>Country of Origin:</strong>
+    <%= @wine.origin %>
+</p>
+
+<p>
+    <strong>Grape Type:</strong>
+    <%= @wine.grape %>
+</p>
+
+<p>
+    <strong>Suitable for Vegitarians?</strong>
+    <%=
+        if @wine.vegitarian
+            "Yes"
+        else
+            "No"
+        end
+    %>
+</p>
+
+<p>
+    <strong>Bottle Size:</strong>
+    <%= @wine.size %>ml
+</p>
+
+<p>
+    <strong>Price:</strong>
+    £<%= @wine.price %>
+</p>
+
+<p>
+    <strong>Supplier:</strong>
+    <%= @wine.supplier %>
 </p>

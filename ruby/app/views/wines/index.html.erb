@@ -12,7 +12,11 @@
    <tr>
        <th>ID</th>
        <th>Name</th>
+       <th>Image</th>
+       <th>Short Description</th>
+       <th>Bottle Size</th>
        <th>Price</th>
+       <th>Supplier</th>
    </tr>
    <% @wines.each do |wine| %>
       <tr>
@@ -22,7 +26,11 @@
                     <%= wine.name %>
                </a>
            </td>
-           <td><%= wine.price %></td>
+           <td><img src="<%= wine.image %>"/></td>
+           <td><%= wine.short_description %></td>
+           <td><%= wine.size %>ml</td>
+           <td>£<%= wine.price %></td>
+           <td><%= wine.supplier %></td>
       </tr>
   <% end %>
 </table>
