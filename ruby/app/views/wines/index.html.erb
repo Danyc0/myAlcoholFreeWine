@@ -1,13 +1,19 @@
 <h1>Listing Wines</h1>
- 
+
 <table>
    <tr>
+       <th>ID</th>
        <th>Name</th>
        <th>Price</th>
    </tr>
    <% @wines.each do |wine| %>
       <tr>
-           <td><%= wine.name %></td>
+           <td><%= wine.id %></td>
+           <td>
+               <a href="/wines/<%= wine.id %>">
+                    <%= wine.name %>
+               </a>
+           </td>
            <td><%= wine.price %></td>
       </tr>
   <% end %>
