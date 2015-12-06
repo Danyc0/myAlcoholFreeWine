@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204170040) do
+ActiveRecord::Schema.define(version: 20151206173939) do
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "owner_id"
+    t.string  "owner_type"
+    t.integer "quantity"
+    t.integer "item_id"
+    t.string  "item_type"
+    t.float   "price"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "wines", force: :cascade do |t|
     t.string   "name",              null: false
@@ -21,8 +35,9 @@ ActiveRecord::Schema.define(version: 20151204170040) do
     t.string   "origin",            null: false
     t.string   "grape",             null: false
     t.boolean  "vegitarian",        null: false
-    t.decimal  "size",              null: false
+    t.integer  "size",              null: false
     t.float    "price",             null: false
+    t.string   "supplier",          null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
