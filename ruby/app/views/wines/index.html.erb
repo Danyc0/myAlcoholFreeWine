@@ -1,5 +1,13 @@
 <h1>Listing Wines</h1>
 
+<div>
+    <%= form_tag("/wines/search", method: "get") do %>
+        <%= label_tag(:term, "Search for:") %>
+        <%= text_field_tag(:term) %>
+        <%= submit_tag("Search") %>
+    <% end %>
+</div>
+
 <table>
    <tr>
        <th>ID</th>

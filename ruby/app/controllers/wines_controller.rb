@@ -6,11 +6,15 @@ class WinesController < ApplicationController
     def index
         @wines = Wine.paginate(page: params[:page], per_page: 10).order('name')
     end
+    
+    def find
+        @wines = Wine.search(params[:term]).paginate(page: params[:page], per_page: 10).order('name')
+    end
 
     def create
         @wine = Wine.new(params[:wine])
         @wine.save
-        redirect to @wine
+        redirect_to @wine
     end
 
     def refresh
