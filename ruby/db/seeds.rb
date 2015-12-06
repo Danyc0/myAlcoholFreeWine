@@ -16,37 +16,40 @@
         origin: "france",
         grape: "sauvignon blanc",
         vegitarian: true,
-        size: 500,
-        price: 6.99
+        size: 512,
+        price: 6.99,
+        supplier: "ALCOHOL FREE WINES 'R US"
         )
 end
 
 30.times do |i|
     Wine.create(
         id: (i+5),
-        name: "wine ##{i}",
+        name: "wine ##{i+5}",
         image: "wine1.jpg",
         short_description: "my wine one",
         long_description: "my long wine one",
         origin: "france",
         grape: "sauvignon blanc",
         vegitarian: true,
-        size: 500,
-        price: 6.99
+        size: 256,
+        price: 3.99,
+        supplier: "Free - As in 'Wine'"
         )
 end
 
 5.times do |i|
     Wine.create(
-        id: (i+45),
-        name: "zwine ##{i}",
+        id: (i+35),
+        name: "zwine ##{i+35}",
         image: "wine1.jpg",
         short_description: "my wine one",
         long_description: "my long wine one",
         origin: "france",
         grape: "sauvignon blanc",
-        vegitarian: true,
+        vegitarian: false,
         size: 500,
-        price: 6.99
+        price: 6.99,
+        supplier: "ALCOHOL FREE WINES 'R US"
         )
 end
