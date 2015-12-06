@@ -5,7 +5,7 @@ class ShoppingCartsController < ApplicationController
 
   def create
     @wine = Wine.find(params[:id])
-    @shopping_cart.add(@wine, @wine.price, params[:num_wine])
+    @shopping_cart.add(@wine, @wine.price, params[:num_wine].to_i)
     redirect_to basket_path
   end
 

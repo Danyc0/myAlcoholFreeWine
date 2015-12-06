@@ -50,6 +50,6 @@
 <%= form_tag(basket_path, method: "post") do %>
     <%= label_tag(:num_wine_label, "Amount") %>
     <%= select_tag(:num_wine, "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe) %>
-    <%= hidden_field_tag(:id, @wine) %>
+    <%= hidden_field_tag(:id, @wine.id) %>
     <%= submit_tag("Order") %>
 <% end %>
