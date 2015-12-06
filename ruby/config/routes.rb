@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get 'basket' => 'shopping_carts#show'
+  post 'basket' => 'shopping_carts#create'
+  delete 'basket' => 'shopping_carts#clear'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

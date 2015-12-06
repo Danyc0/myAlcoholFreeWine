@@ -1,0 +1,10 @@
+<h1>Shopping Cart</h1>
+
+<%= render :partial => 'shopping_cart_item', :collection => @shopping_cart.shopping_cart_items %>
+
+<p>
+    <strong>SubTotal:</strong>
+    £<%= @shopping_cart.subtotal %>
+</p>
+
+<%= link_to 'Clear Cart', basket_path, :method => 'DELETE' %>
