@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'home/index'
 
   get 'wines/search' => 'wines#find'
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'wines#index'
 
   get 'basket' => 'shopping_carts#show'
   post 'basket' => 'shopping_carts#create'
