@@ -21,7 +21,7 @@ class Wine < ActiveRecord::Base
             result2.each_with_index{|bottle2, index2|
                 bottle2[:supplier] = :supplier2
 
-                if bottle1['id'] == bottle2['id']
+                if bottle1['name'] == bottle2['name']
                     if bottle1['price'] < bottle2['price']
                         duplicate_wines << bottle1
                     else
