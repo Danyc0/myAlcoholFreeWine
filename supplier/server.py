@@ -29,6 +29,11 @@ class MyHandler(BaseHTTPRequestHandler):
         
         path = filter(None, self.path.rsplit("/"))
         print(path)
+   
+        stocks = []
+        for wine in wines:
+            stocks.append(wine['stock'])
+            wine.pop('stock')
 
         if wines:
             if len(path) == 1:
