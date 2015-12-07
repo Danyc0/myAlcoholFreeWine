@@ -1,3 +1,5 @@
+#Portions of this file were taken from:
+#https://github.com/crowdint/acts_as_shopping_cart_app/blob/master/app/controllers/shopping_carts_controller.rb
 class ShoppingCartsController < ApplicationController
   require 'acts_as_shopping_cart'
 
