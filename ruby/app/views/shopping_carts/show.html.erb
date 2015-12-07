@@ -24,4 +24,5 @@
     £<%= @shopping_cart.subtotal %>
 </p>
 
+<%= link_to 'Checkout', orders_path, :method => 'PUSH' %>
 <%= link_to 'Clear Cart', basket_path, :method => 'DELETE' %>
