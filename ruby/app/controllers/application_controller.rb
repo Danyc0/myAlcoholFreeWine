@@ -11,5 +11,11 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_up) << :address1
       devise_parameter_sanitizer.for(:sign_up) << :address2
       devise_parameter_sanitizer.for(:sign_up) << :postcode
+
+      devise_parameter_sanitizer.for(:account_update) << :name
+      devise_parameter_sanitizer.for(:account_update) << :address1
+      devise_parameter_sanitizer.for(:account_update) << :address2
+      devise_parameter_sanitizer.for(:account_update) << :postcode
+
     end  
 end
