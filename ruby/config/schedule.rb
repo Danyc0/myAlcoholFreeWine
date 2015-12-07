@@ -6,8 +6,7 @@ set :output, '/tmp/MAF.log'
 # http://en.wikipedia.org/wiki/Cron
 
 every 1.minutes do
-    runner "WinesController.refresh", environment: :development
-    command 'echo "hello"', environment: :development
+    runner "Wine.refresh", environment: :development
 end
 
 # Example:
