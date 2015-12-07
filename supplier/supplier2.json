@@ -1,6 +1,6 @@
 [
     {
-        "id" : 1,
+        "id" : 0,
         "name" : "wine1",
         "image" : "wine1.jpg",
         "short_description" : "my wine one",
@@ -13,7 +13,7 @@
         "stock" : 10
     },
     {
-        "id" : 2,
+        "id" : 1,
         "name" : "wine2",
         "image" : "wine2.jpg",
         "short_description" : "my wine two",
