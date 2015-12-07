@@ -1,3 +1,5 @@
+<h1><%= link_to 'My Alcohol Free Wine', root_path %></h1>
+
 <% if user_signed_in? %>
     Logged in as <strong><%= current_user.name %></strong> -
     <%= link_to 'Edit Account', edit_user_registration_path %> -
