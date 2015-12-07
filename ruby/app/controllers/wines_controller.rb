@@ -4,6 +4,7 @@ class WinesController < ApplicationController
     before_action :set_current_page
 
     def index
+        @checkout = params[:checkout]
         @wines = Wine.paginate(page: params[:page], per_page: 10).order('name')
     end
     

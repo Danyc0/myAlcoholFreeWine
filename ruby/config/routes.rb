@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'basket' => 'shopping_carts#create'
   delete 'basket' => 'shopping_carts#clear'
 
+  post 'orders' => 'shopping_carts#checkout'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

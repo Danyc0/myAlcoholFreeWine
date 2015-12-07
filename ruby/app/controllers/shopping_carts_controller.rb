@@ -14,6 +14,16 @@ class ShoppingCartsController < ApplicationController
     redirect_to wines_path
   end
 
+  def checkout
+    if user_signed_in?
+        @shopping_cart.clear
+        #Send order to REST API here
+        redirect_to wines_path(:checkout => true)
+    else
+        redirect_to new_user_session_path(:checkout => true)
+    end
+  end
+
   private
       def extract_shopping_cart
         shopping_cart_id = session[:shopping_cart_id]
