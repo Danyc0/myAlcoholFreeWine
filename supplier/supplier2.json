@@ -1,0 +1,28 @@
+[
+    {
+        "id" : 1,
+        "name" : "wine1",
+        "image" : "wine1.jpg",
+        "short_description" : "my wine one",
+        "long_description" : "my long wine one",
+        "origin" : "france",
+        "grape" : "sauvignon blanc",
+        "vegitarian" : true,
+        "size" : 500,
+        "price" : 3.99,
+        "stock" : 10
+    },
+    {
+        "id" : 2,
+        "name" : "wine2",
+        "image" : "wine2.jpg",
+        "short_description" : "my wine two",
+        "long_description" : "my long wine two",
+        "origin" : "france",
+        "grape" : "sauvignon blanc",
+        "vegitarian" : false,
+        "size" : 500,
+        "price" : 6.99,
+        "stock" : 10
+    }
+]
