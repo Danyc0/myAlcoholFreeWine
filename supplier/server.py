@@ -86,17 +86,10 @@ class MyHandler(BaseHTTPRequestHandler):
         
         for wine in order['wines']:
             if wine['id'] < len(wines):
-                if wines[wine['id']]['stock'] >= wine['amount']:
-                    wines[wine['id']]['stock'] -= wine['amount']
-                
-                    order_confirmation['wines'].append(wine)
-                else:
-                    order_confirmation['not_ordered'].append(wine)
+                order_confirmation['wines'].append(wine)
+                order_confirmation['orderID'] = currentID
             else:
                 order_confirmation['not_ordered'].append(wine)
-
-
-            order_confirmation['orderID'] = currentID
         
         if order_confirmation['orderID'] != -1:
             output = json.JSONEncoder().encode(order_confirmation)
