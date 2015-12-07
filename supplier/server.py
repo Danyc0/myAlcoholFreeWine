@@ -23,7 +23,7 @@ class MyHandler(BaseHTTPRequestHandler):
             print("User Agent: " + self.headers.get('User-Agent'))
         response_code = 404
         wines = []
-        with open("supplier1.json") as supplier:
+        with open(sys.argv[2] + ".json") as supplier:
             wines = json.load(supplier)
         output = ""
         
@@ -74,7 +74,7 @@ class MyHandler(BaseHTTPRequestHandler):
         response_code = 404
 
         wines = []
-        with open("supplier1.json") as supplier:
+        with open(sys.argv[2]) as supplier:
             wines = json.load(supplier)
         output = ""
 
